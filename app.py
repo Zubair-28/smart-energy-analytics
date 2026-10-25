@@ -12,9 +12,16 @@ st.title('⚡ SmartEnergy Analytics')
 st.caption('PySpark-first electricity analytics with transparent local fallback and AWS-ready storage.')
 
 if not DATA_PATH.exists():
-    if st.button('Generate documented synthetic demo data'):
-        generate_demo(DATA_PATH); st.rerun()
-    st.info(f'No input data found at {DATA_PATH}. Generate the demo dataset or set DATA_PATH in .env.'); st.stop()
+    # Streamlit Community Cloud does not receive local ignored data files or
+    # the private .env file. Generate the documented demo dataset on first run
+    # so a fresh deployment is immediately usable without AWS credentials.
+    if DATA_PATH.name == 'energy_demo.csv':
+        DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+        generate_demo(DATA_PATH)
+    else:
+        if st.button('Generate documented synthetic demo data'):
+            generate_demo(DATA_PATH); st.rerun()
+        st.info(f'No input data found at {DATA_PATH}. Generate the demo dataset or set DATA_PATH in .env.'); st.stop()
 if not (OUTPUT_DIR/'quality.json').exists(): run_pipeline(DATA_PATH, OUTPUT_DIR)
 clean = pd.read_csv(OUTPUT_DIR/'cleaned.csv', parse_dates=['timestamp'])
 quality = json.loads((OUTPUT_DIR/'quality.json').read_text())

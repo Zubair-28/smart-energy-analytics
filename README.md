@@ -63,7 +63,13 @@ The included demo data is synthetic and is used only to make the application imm
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-## GitHub
+## Public deployment
 
-The requested repository name is `smart-energy-analytics` under `Zubair-28`, private by default. GitHub CLI is not installed in the current environment, so repository creation/push remains a documented next step rather than an unverified claim.
+The public GitHub repository is `Zubair-28/smart-energy-analytics`. To publish the dashboard with Streamlit Community Cloud:
+
+1. Sign in at [share.streamlit.io](https://share.streamlit.io/) with GitHub.
+2. Select **New app**, repository `Zubair-28/smart-energy-analytics`, branch `main`, and file `app.py`.
+3. Select **Deploy**. The app generates its documented synthetic demo data automatically on first run.
+
+AWS credentials must not be added to Streamlit secrets for the demo deployment. S3 remains an optional storage integration; local development uses `.env` and AWS CLI credentials.
 
