@@ -20,7 +20,7 @@ st.set_page_config(
     page_title="SmartEnergy Analytics",
     page_icon="⚡",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",
 )
 
 
@@ -488,30 +488,133 @@ st.markdown(
 
     @media (max-width: 768px) {
         .block-container {
-            padding-top: 1rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
+            width: 100%;
+            max-width: 100%;
+            padding: 0.9rem 0.75rem 2rem;
         }
 
         .hero-note {
-            padding: 1.4rem;
-            border-radius: 15px;
+            padding: 1.2rem;
+            margin: 0.8rem 0 1.25rem;
+            border-radius: 14px;
         }
 
         .hero-title {
-            font-size: 1.5rem;
+            font-size: clamp(1.25rem, 5vw, 1.55rem);
         }
 
         .hero-description {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
+            line-height: 1.6;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-badge {
+            max-width: 100%;
+            font-size: 0.61rem;
+            letter-spacing: 0.03em;
+            overflow-wrap: anywhere;
+        }
+
+        .section-title {
+            font-size: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+        }
+
+        /* Stack chart, filter, and download columns on narrow screens. */
+        [data-testid="stHorizontalBlock"] {
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        [data-testid="stHorizontalBlock"] > [data-testid="column"] {
+            flex: 1 1 100% !important;
+            width: 100% !important;
+            min-width: 100% !important;
+        }
+
+        /* Keep the four headline metrics compact in a two-by-two grid. */
+        .st-key-overview-metrics [data-testid="stHorizontalBlock"] > [data-testid="column"] {
+            flex: 1 1 calc(50% - 0.4rem) !important;
+            width: calc(50% - 0.4rem) !important;
+            min-width: calc(50% - 0.4rem) !important;
         }
 
         [data-testid="stMetric"] {
+            min-width: 0;
             padding: 0.8rem;
         }
 
+        [data-testid="stMetricValue"] {
+            font-size: clamp(1.05rem, 5vw, 1.4rem);
+            overflow-wrap: anywhere;
+        }
+
+        [data-testid="stPlotlyChart"] {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        [data-testid="stDataFrame"] {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .stButton > button,
+        .stDownloadButton > button {
+            min-height: 2.75rem;
+        }
+
         .insight-card {
-            padding: 14px;
+            gap: 0.7rem;
+            padding: 0.85rem;
+        }
+
+        .app-footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .block-container {
+            padding-left: 0.55rem;
+            padding-right: 0.55rem;
+        }
+
+        .hero-note {
+            padding: 1rem;
+        }
+
+        .section-icon {
+            min-width: 32px;
+            height: 32px;
+        }
+
+        .st-key-overview-metrics [data-testid="stHorizontalBlock"] > [data-testid="column"] {
+            flex: 1 1 calc(50% - 0.3rem) !important;
+            width: calc(50% - 0.3rem) !important;
+            min-width: calc(50% - 0.3rem) !important;
+        }
+
+        .insight-number {
+            min-width: 30px;
+            height: 30px;
+        }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+        [data-testid="stMetric"]:hover,
+        .insight-card:hover {
+            transform: none;
         }
     }
 </style>
@@ -795,27 +898,28 @@ if page == "Energy overview":
         "your monitored buildings.",
     )
 
-    c1, c2, c3, c4 = st.columns(4)
+    with st.container(key="overview-metrics"):
+        c1, c2, c3, c4 = st.columns(4)
 
-    c1.metric(
-        "Total consumption",
-        f"{clean.consumption_kwh.sum():,.1f} kWh",
-    )
+        c1.metric(
+            "Total consumption",
+            f"{clean.consumption_kwh.sum():,.1f} kWh",
+        )
 
-    c2.metric(
-        "Average daily",
-        f"{daily['sum'].mean():,.1f} kWh",
-    )
+        c2.metric(
+            "Average daily",
+            f"{daily['sum'].mean():,.1f} kWh",
+        )
 
-    c3.metric(
-        "Entities monitored",
-        clean.entity_id.nunique(),
-    )
+        c3.metric(
+            "Entities monitored",
+            clean.entity_id.nunique(),
+        )
 
-    c4.metric(
-        "Total records",
-        f"{len(clean):,}",
-    )
+        c4.metric(
+            "Total records",
+            f"{len(clean):,}",
+        )
 
     st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
 
