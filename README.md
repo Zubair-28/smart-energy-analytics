@@ -23,6 +23,13 @@ py -m venv .venv
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
+Or run the complete local setup and validation in one command:
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\setup_windows.ps1
+```
+
 Install PySpark when a Java runtime is available:
 
 ```powershell
@@ -30,6 +37,8 @@ Install PySpark when a Java runtime is available:
 ```
 
 The fallback is not presented as distributed execution. Pipeline metadata records which engine actually ran.
+
+On Windows, the pipeline automatically prefers the Java 17 runtime bundled with Tableau when available. If local Spark cannot create its loopback event channel because of host security/network policy, the run records the Spark exception and continues with the explicitly labeled pandas fallback.
 
 ## AWS S3
 
