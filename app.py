@@ -15,10 +15,21 @@ st.markdown('''
     .stApp { background: linear-gradient(135deg, #eef4f6 0%, #f8f5ee 58%, #e9f1f1 100%); color: var(--ink); }
     [data-testid="stHeader"] { background: rgba(18,35,63,.96); }
     [data-testid="stToolbar"] { color: #ffffff; }
-    [data-testid="stSidebar"] { background: var(--navy); border-right: 1px solid #2d466c; }
+    [data-testid="stSidebar"] { background: linear-gradient(180deg, #10213b 0%, #173357 58%, #12233f 100%); border-right: 1px solid #2d466c; box-shadow: 8px 0 24px rgba(18,35,63,.12); }
     [data-testid="stSidebar"] * { color: #edf5f7; }
-    [data-testid="stSidebar"] .stRadio label:hover { color: #7fe2d5; }
-    [data-testid="stSidebar"] [data-baseweb="radio"] div:first-child { border-color: #78d6cb; }
+    [data-testid="stSidebar"] > div:first-child { padding-top: 1.6rem; }
+    [data-testid="stSidebar"] section::before { content: 'SMARTENERGY'; display: block; color: #7fe2d5; font-size: .72rem; font-weight: 800; letter-spacing: .18em; padding: 0 1rem .3rem; }
+    [data-testid="stSidebar"] section::after { content: 'Analytics workspace'; display: block; color: #a9bdd0; font-size: .78rem; padding: 0 1rem 1.25rem; }
+    [data-testid="stSidebar"] .stRadio > label { color: #a9bdd0; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .55rem; }
+    [data-testid="stSidebar"] [data-baseweb="radio"] { position: relative; margin: .22rem 0; padding: .72rem .78rem; border-radius: 10px; transition: background .22s ease, transform .22s ease, box-shadow .22s ease; cursor: pointer; }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:hover { background: rgba(127,226,213,.12); transform: translateX(5px); box-shadow: 0 5px 14px rgba(0,0,0,.12); }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:active { transform: translateX(3px) scale(.985); }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) { background: linear-gradient(90deg, rgba(15,139,141,.34), rgba(15,139,141,.08)); box-shadow: inset 3px 0 0 #7fe2d5, 0 6px 16px rgba(0,0,0,.14); }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) label { color: #ffffff; font-weight: 750; }
+    [data-testid="stSidebar"] [data-baseweb="radio"] label { transition: color .22s ease, letter-spacing .22s ease; }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:hover label { color: #7fe2d5; letter-spacing: .01em; }
+    [data-testid="stSidebar"] [data-baseweb="radio"] div:first-child { border-color: #78d6cb; transition: background .22s ease, border-color .22s ease, transform .22s ease; }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) div:first-child { background: #7fe2d5; border-color: #7fe2d5; transform: scale(1.12); }
     .block-container { max-width: 1450px; padding-top: 2rem; padding-bottom: 3rem; }
     h1 { color: var(--navy); font-weight: 760; letter-spacing: -.035em; margin-bottom: .15rem; }
     h2, h3 { color: var(--navy); font-weight: 700; }
