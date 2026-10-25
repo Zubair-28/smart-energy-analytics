@@ -10,4 +10,7 @@ OUTPUT_DIR = ROOT / 'outputs'
 AWS_REGION = os.getenv('AWS_REGION', 'ap-south-1')
 S3_BUCKET = os.getenv('S3_BUCKET', '')
 S3_PREFIX = os.getenv('S3_PREFIX', 'smart-energy-analytics')
+AWS_PROFILE = os.getenv('AWS_PROFILE', '').strip()
+if not AWS_PROFILE:
+    os.environ.pop('AWS_PROFILE', None)
 
