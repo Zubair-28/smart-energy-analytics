@@ -1,5 +1,7 @@
-import argparse, json, time
+import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import argparse, json, time
 import pandas as pd
 from processing.pipeline import generate_demo, run_pipeline
 
