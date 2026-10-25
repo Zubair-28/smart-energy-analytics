@@ -18,32 +18,15 @@ st.markdown('''
     [data-testid="stSidebar"] { background: linear-gradient(180deg, #12233f 0%, #1b3155 58%, #12233f 100%); border-right: 1px solid #365275; box-shadow: 8px 0 24px rgba(18,35,63,.12); }
     [data-testid="stSidebar"] * { color: #f4f1e9; }
     [data-testid="stSidebar"] > div:first-child { padding-top: 1.25rem; }
-    [data-testid="stSidebar"] .stRadio > label { color: #a9bdd0; font-size: .68rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin: 1.35rem .75rem .6rem; }
-    [data-testid="stSidebar"] [data-baseweb="radio"] { position: relative; margin: .34rem 0; padding: .72rem .78rem; border: 1px solid transparent; border-radius: 11px; transition: background .22s ease, transform .22s ease, box-shadow .22s ease, border-color .22s ease; cursor: pointer; }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:hover { background: rgba(127,226,213,.12); transform: translateX(5px); box-shadow: 0 5px 14px rgba(0,0,0,.12); }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:active { transform: translateX(3px) scale(.985); }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) { background: linear-gradient(100deg, rgba(15,139,141,.42), rgba(15,139,141,.10)); border-color: rgba(127,226,213,.24); box-shadow: inset 4px 0 0 #7fe2d5, 0 7px 18px rgba(0,0,0,.16); }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) label { color: #ffffff; font-weight: 750; }
-    [data-testid="stSidebar"] [data-baseweb="radio"] label { transition: color .22s ease, letter-spacing .22s ease; }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:hover label { color: #7fe2d5; letter-spacing: .01em; }
-    [data-testid="stSidebar"] [data-baseweb="radio"] div:first-child { display: none; }
-    [data-testid="stSidebar"] [data-baseweb="radio"] label { display: flex; align-items: center; gap: .68rem; width: 100%; }
-    [data-testid="stSidebar"] [data-baseweb="radio"] label::before { display: inline-flex; align-items: center; justify-content: center; width: 1.55rem; height: 1.55rem; border-radius: 8px; background: rgba(255,255,255,.08); color: #a9bdd0; font-size: .9rem; transition: background .22s ease, color .22s ease, transform .22s ease; }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(1) label::before { content: '⌂'; }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(2) label::before { content: '▥'; }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(3) label::before { content: '!'; }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(4) label::before { content: '↗'; }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(5) label::before { content: '✦'; }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(6) label::before { content: '✓'; }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:hover label::before { background: rgba(127,226,213,.17); color: #7fe2d5; transform: scale(1.08); }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) label::before { background: #7fe2d5; color: #12233f; transform: scale(1.06); }
+    [data-testid="stSidebar"] [data-testid="stButton"] { margin: .18rem 0; }
+    [data-testid="stSidebar"] [data-testid="stButton"] button { min-height: 2.85rem; border: 1px solid transparent; border-radius: 11px; background: transparent; color: #edf5f7; text-align: left; padding: .55rem .8rem; transition: background .2s ease, transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+    [data-testid="stSidebar"] [data-testid="stButton"] button:hover { border-color: rgba(127,226,213,.22); background: rgba(127,226,213,.11); color: #7fe2d5; transform: translateX(4px); }
+    [data-testid="stSidebar"] [data-testid="stButton"] button:active { transform: translateX(2px) scale(.985); }
+    [data-testid="stSidebar"] .st-key-nav-active button { background: linear-gradient(100deg, rgba(15,139,141,.42), rgba(15,139,141,.10)); border-color: rgba(127,226,213,.24); box-shadow: inset 4px 0 0 #7fe2d5, 0 7px 18px rgba(0,0,0,.16); color: #ffffff; font-weight: 750; }
     [data-testid="stSidebar"] [data-testid="stTextInput"] { margin: 1rem .75rem 0; }
     [data-testid="stSidebar"] [data-testid="stTextInput"] input { background: rgba(0,0,0,.15) !important; border: 1px solid rgba(127,226,213,.15) !important; color: #f4f1e9 !important; padding-left: 2.15rem !important; }
     [data-testid="stSidebar"] [data-testid="stTextInput"]::before { content: '⌕'; position: absolute; z-index: 2; color: #a9bdd0; left: 1.35rem; top: .47rem; font-size: 1.15rem; }
-    .sidebar-brand { display:flex; align-items:center; gap:.72rem; padding:.1rem .75rem .95rem; border-bottom:1px solid rgba(127,226,213,.16); }
-    .sidebar-brand-mark { display:flex; align-items:center; justify-content:center; width:2.25rem; height:2.25rem; border-radius:11px; background:linear-gradient(135deg,#7fe2d5,#0f8b8d); color:#12233f; font-weight:900; box-shadow:0 6px 14px rgba(0,0,0,.2); }
-    .sidebar-brand-title { color:#ffffff; font-size:1rem; font-weight:800; letter-spacing:-.02em; }
-    .sidebar-brand-subtitle { color:#a9bdd0; font-size:.68rem; margin-top:.12rem; }
+    .sidebar-section-label { color:#a9bdd0; font-size:.68rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; margin:1.4rem .75rem .65rem; }
     .sidebar-status { margin: 2rem .75rem 0; padding: .8rem .85rem; border:1px solid rgba(127,226,213,.2); border-radius:11px; background:rgba(255,255,255,.055); color:#a9bdd0; font-size:.72rem; }
     .sidebar-status span { color:#7fe2d5; font-weight:750; }
     .block-container { max-width: 1450px; padding-top: 2rem; padding-bottom: 3rem; }
@@ -60,10 +43,11 @@ st.markdown('''
     div[data-baseweb="select"] > div, input { border-radius: 8px !important; border-color: var(--line) !important; background: var(--surface) !important; }
     .hero-note { background: linear-gradient(100deg, var(--navy), var(--navy-2)); color: #f5fbfb; border-radius: 14px; padding: 1rem 1.25rem; margin: .5rem 0 1.4rem; box-shadow: 0 8px 24px rgba(18,35,63,.16); }
     .hero-note strong { color: #7fe2d5; }
+    [data-testid="stSidebar"] [data-testid="stButton"] button { background: transparent; color: #edf5f7; border-color: transparent; }
+    [data-testid="stSidebar"] [data-testid="stButton"] button:hover { background: rgba(127,226,213,.11); color: #7fe2d5; border-color: rgba(127,226,213,.22); }
+    [data-testid="stSidebar"] .st-key-nav-active button { background: linear-gradient(100deg, rgba(15,139,141,.42), rgba(15,139,141,.10)); border-color: rgba(127,226,213,.24); color: #ffffff; }
 </style>
 ''', unsafe_allow_html=True)
-with st.sidebar:
-    st.markdown('<div class="sidebar-brand"><div class="sidebar-brand-mark">SE</div><div><div class="sidebar-brand-title">SmartEnergy</div><div class="sidebar-brand-subtitle">Analytics workspace</div></div></div>', unsafe_allow_html=True)
 st.title('⚡ SmartEnergy Analytics')
 st.markdown('<div class="hero-note"><strong>Energy intelligence workspace</strong><br>PySpark-first electricity analytics with transparent local fallback and AWS-ready storage.</div>', unsafe_allow_html=True)
 CHART_TEMPLATE = 'plotly_white'
@@ -89,8 +73,16 @@ nav_search = st.sidebar.text_input('Search workspace', placeholder='Search modul
 filtered_navigation = [item for item in navigation if nav_search.lower() in item.lower()]
 if not filtered_navigation:
     st.sidebar.caption('No matching module')
-    filtered_navigation = navigation
-page = st.sidebar.radio('Workspace', filtered_navigation)
+page = st.session_state.get('active_page', navigation[0])
+st.sidebar.markdown('<div class="sidebar-section-label">Workspace</div>', unsafe_allow_html=True)
+nav_icons = {'Energy overview':'⌂','Consumption analytics':'▥','Anomaly monitor':'⌁','Demand forecast':'↗','Energy insights':'✦','Data quality':'✓'}
+for item in filtered_navigation:
+    key = ''.join(ch.lower() if ch.isalnum() else '-' for ch in item).strip('-')
+    container_key = 'nav-active' if item == page else f'nav-{key}'
+    with st.sidebar.container(key=container_key):
+        if st.button(f"{nav_icons[item]}     {item}", key=f'go-{key}', use_container_width=True):
+            st.session_state.active_page = item
+            st.rerun()
 st.sidebar.markdown('<div class="sidebar-status"><span>●</span>&nbsp; Demo analytics ready<br><small>Six modules · Live local session</small></div>', unsafe_allow_html=True)
 if page == 'Energy overview':
     c1,c2,c3,c4 = st.columns(4); c1.metric('Total consumption', f"{clean.consumption_kwh.sum():,.1f} kWh"); c2.metric('Average daily', f"{daily['sum'].mean():,.1f} kWh"); c3.metric('Entities', clean.entity_id.nunique()); c4.metric('Records', f"{len(clean):,}")
