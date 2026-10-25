@@ -30,7 +30,7 @@ Set-ExecutionPolicy -Scope Process Bypass
 .\setup_windows.ps1
 ```
 
-Install PySpark when a Java runtime is available:
+PySpark is included in `requirements.txt` and is attempted automatically when a compatible Java runtime is available:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install pyspark
@@ -39,6 +39,8 @@ Install PySpark when a Java runtime is available:
 The fallback is not presented as distributed execution. Pipeline metadata records which engine actually ran.
 
 On Windows, the pipeline automatically prefers the Java 17 runtime bundled with Tableau when available. If local Spark cannot create its loopback event channel because of host security/network policy, the run records the Spark exception and continues with the explicitly labeled pandas fallback.
+
+On Streamlit Community Cloud, the app attempts PySpark after dependency installation. If the hosted runtime does not provide a compatible Java/Spark runtime, the Data Quality page reports the exact exception and the completed pandas fallback; the dashboard does not label that run as PySpark.
 
 ## AWS S3
 
