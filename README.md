@@ -51,6 +51,8 @@ Copy `.env.example` to `.env`, set `S3_BUCKET`, and authenticate with AWS CLI/pr
 
 The application never hard-codes credentials. S3 execution is only claimed after a real command succeeds.
 
+See `docs/aws_setup.md` and run `py scripts/cloud_check.py --bucket YOUR_BUCKET` to verify the real S3 upload round trip.
+
 ## Dataset provenance
 
 The included demo data is synthetic and is used only to make the application immediately demonstrable. It is not represented as smart-meter measurements. For an academic run, replace it with a public dataset and record its source, license, schema, time resolution, and cleaning decisions in `docs/dataset.md`.
