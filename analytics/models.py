@@ -19,11 +19,19 @@ def forecast(daily: pd.DataFrame, horizon: int = 7) -> tuple[pd.DataFrame, dict]
     if len(values) < 14: raise ValueError('At least 14 daily observations are required for forecasting')
     split = max(7, len(values)-horizon); train, test = values[:split], values[split:]
     baseline = np.repeat(train[-7:].mean(), len(test))
-    mae = float(np.mean(np.abs(test-baseline))); rmse = float(np.sqrt(np.mean((test-baseline)**2)))
+    seasonal = np.array([train[i-7] for i in range(split, len(values))])
+    baseline_mae = float(np.mean(np.abs(test-baseline))); baseline_rmse = float(np.sqrt(np.mean((test-baseline)**2)))
+    seasonal_mae = float(np.mean(np.abs(test-seasonal))); seasonal_rmse = float(np.sqrt(np.mean((test-seasonal)**2)))
     future_days = pd.date_range(x.day.iloc[-1] + pd.Timedelta(days=1), periods=horizon)
-    pred = pd.DataFrame({'day': future_days, 'predicted_kwh': np.repeat(values[-7:].mean(), horizon), 'kind': 'forecast'})
+    baseline_future = np.repeat(values[-7:].mean(), horizon)
+    seasonal_future = np.resize(values[-7:], horizon)
+    pred = pd.DataFrame({'day': future_days, 'baseline_forecast_kwh': baseline_future,
+                         'seasonal_naive_kwh': seasonal_future, 'kind': 'forecast'})
     actual = pd.DataFrame({'day': x.day.iloc[split:], 'predicted_kwh': baseline, 'actual_kwh': test, 'kind': 'test'})
-    return pd.concat([actual, pred], ignore_index=True), {'mae': mae, 'rmse': rmse, 'horizon_days': horizon, 'method': '7-day historical mean'}
+    return pd.concat([actual, pred], ignore_index=True), {'mae': baseline_mae, 'rmse': baseline_rmse,
+        'baseline_mae': baseline_mae, 'baseline_rmse': baseline_rmse,
+        'seasonal_naive_mae': seasonal_mae, 'seasonal_naive_rmse': seasonal_rmse, 'horizon_days': horizon,
+        'test_records': len(test), 'evaluation': 'chronological holdout; no future observations used'}
 
 def insights(clean: pd.DataFrame) -> list[str]:
     daily = clean.groupby('day').consumption_kwh.sum()
