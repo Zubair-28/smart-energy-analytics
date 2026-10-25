@@ -45,13 +45,14 @@ def clean_data(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
     return out, meta
 
 def run_pipeline(input_path: str | Path, output_dir: str | Path) -> dict:
-    started = time.perf_counter(); engine = 'pandas-fallback'
+    started = time.perf_counter(); engine = 'pandas-fallback'; engine_error = None
     try:
         from pyspark.sql import SparkSession
         spark = SparkSession.builder.master('local[*]').appName('SmartEnergyAnalytics').getOrCreate()
         raw = spark.read.option('header', True).option('inferSchema', True).csv(str(input_path))
         df = raw.toPandas(); spark.stop(); engine = 'pyspark'
-    except Exception:
+    except Exception as exc:
+        engine_error = f'{type(exc).__name__}: {exc}'
         df = pd.read_csv(input_path)
     clean, quality = clean_data(df)
     out = Path(output_dir); out.mkdir(parents=True, exist_ok=True)
@@ -60,7 +61,7 @@ def run_pipeline(input_path: str | Path, output_dir: str | Path) -> dict:
     clean.groupby('day', as_index=False).consumption_kwh.agg(['sum','mean','max']).reset_index().to_csv(out/'daily.csv', index=False)
     clean.groupby('month', as_index=False).consumption_kwh.agg(['sum','mean','max']).reset_index().to_csv(out/'monthly.csv', index=False)
     clean.groupby('entity_id', as_index=False).consumption_kwh.agg(['sum','mean','max']).reset_index().to_csv(out/'entities.csv', index=False)
-    quality.update({'engine': engine, 'duration_seconds': round(time.perf_counter()-started, 4), 'dataset_path': str(input_path)})
+    quality.update({'engine': engine, 'engine_error': engine_error, 'duration_seconds': round(time.perf_counter()-started, 4), 'dataset_path': str(input_path)})
     (out/'quality.json').write_text(json.dumps(quality, indent=2), encoding='utf-8')
     return quality
 
