@@ -27,8 +27,6 @@ st.markdown('''
     [data-testid="stSidebar"] [data-testid="stTextInput"] input { background: rgba(0,0,0,.15) !important; border: 1px solid rgba(127,226,213,.15) !important; color: #f4f1e9 !important; padding-left: 2.15rem !important; }
     [data-testid="stSidebar"] [data-testid="stTextInput"]::before { content: '⌕'; position: absolute; z-index: 2; color: #a9bdd0; left: 1.35rem; top: .47rem; font-size: 1.15rem; }
     .sidebar-section-label { color:#a9bdd0; font-size:.68rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; margin:1.4rem .75rem .65rem; }
-    .sidebar-status { margin: 2rem .75rem 0; padding: .8rem .85rem; border:1px solid rgba(127,226,213,.2); border-radius:11px; background:rgba(255,255,255,.055); color:#a9bdd0; font-size:.72rem; }
-    .sidebar-status span { color:#7fe2d5; font-weight:750; }
     .block-container { max-width: 1450px; padding-top: 2rem; padding-bottom: 3rem; }
     h1 { color: var(--navy); font-weight: 760; letter-spacing: -.035em; margin-bottom: .15rem; }
     h2, h3 { color: var(--navy); font-weight: 700; }
@@ -83,7 +81,6 @@ for item in filtered_navigation:
         if st.button(f"{nav_icons[item]}     {item}", key=f'go-{key}', use_container_width=True):
             st.session_state.active_page = item
             st.rerun()
-st.sidebar.markdown('<div class="sidebar-status"><span>●</span>&nbsp; Demo analytics ready<br><small>Six modules · Live local session</small></div>', unsafe_allow_html=True)
 if page == 'Energy overview':
     c1,c2,c3,c4 = st.columns(4); c1.metric('Total consumption', f"{clean.consumption_kwh.sum():,.1f} kWh"); c2.metric('Average daily', f"{daily['sum'].mean():,.1f} kWh"); c3.metric('Entities', clean.entity_id.nunique()); c4.metric('Records', f"{len(clean):,}")
     fig = px.line(daily, x='day', y='sum', title='Daily total consumption', labels={'day':'Date','sum':'Consumption (kWh)'}, template=CHART_TEMPLATE, color_discrete_sequence=CHART_COLORS); fig.update_layout(margin=dict(l=10,r=10,t=55,b=10)); st.plotly_chart(fig, use_container_width=True)
