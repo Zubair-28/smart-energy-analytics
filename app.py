@@ -151,22 +151,6 @@ st.markdown(
         margin: 1.4rem 0.75rem 0.65rem;
     }
 
-    [data-testid="stSidebar"] [data-testid="stTextInput"] {
-        margin: 0.8rem 0.5rem 0;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stTextInput"] input {
-        background: rgba(0, 0, 0, 0.18) !important;
-        border: 1px solid rgba(127, 226, 213, 0.18) !important;
-        border-radius: 9px !important;
-        color: #ffffff !important;
-        min-height: 2.5rem;
-    }
-
-    [data-testid="stSidebar"] [data-testid="stTextInput"] input::placeholder {
-        color: #9aafc3 !important;
-    }
-
     [data-testid="stSidebar"] [data-testid="stButton"] {
         margin: 0.18rem 0;
     }
@@ -763,22 +747,6 @@ with st.sidebar:
     )
 
 
-nav_search = st.sidebar.text_input(
-    "Search workspace",
-    placeholder="Search modules...",
-    label_visibility="collapsed",
-)
-
-filtered_navigation = [
-    item
-    for item in navigation
-    if nav_search.lower() in item.lower()
-]
-
-if not filtered_navigation:
-    st.sidebar.caption("No matching module")
-
-
 page = st.session_state.get(
     "active_page",
     navigation[0],
@@ -790,7 +758,7 @@ st.sidebar.markdown(
 )
 
 
-for item in filtered_navigation:
+for item in navigation:
 
     key = "".join(
         ch.lower() if ch.isalnum() else "-"
