@@ -17,19 +17,32 @@ st.markdown('''
     [data-testid="stToolbar"] { color: #ffffff; }
     [data-testid="stSidebar"] { background: linear-gradient(180deg, #10213b 0%, #173357 58%, #12233f 100%); border-right: 1px solid #2d466c; box-shadow: 8px 0 24px rgba(18,35,63,.12); }
     [data-testid="stSidebar"] * { color: #edf5f7; }
-    [data-testid="stSidebar"] > div:first-child { padding-top: 1.6rem; }
-    [data-testid="stSidebar"] section::before { content: 'SMARTENERGY'; display: block; color: #7fe2d5; font-size: .72rem; font-weight: 800; letter-spacing: .18em; padding: 0 1rem .3rem; }
-    [data-testid="stSidebar"] section::after { content: 'Analytics workspace'; display: block; color: #a9bdd0; font-size: .78rem; padding: 0 1rem 1.25rem; }
-    [data-testid="stSidebar"] .stRadio > label { color: #a9bdd0; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .55rem; }
-    [data-testid="stSidebar"] [data-baseweb="radio"] { position: relative; margin: .22rem 0; padding: .72rem .78rem; border-radius: 10px; transition: background .22s ease, transform .22s ease, box-shadow .22s ease; cursor: pointer; }
+    [data-testid="stSidebar"] > div:first-child { padding-top: 1.15rem; }
+    [data-testid="stSidebar"] .stRadio > label { color: #91a9c2; font-size: .68rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin: 1.35rem .75rem .6rem; }
+    [data-testid="stSidebar"] [data-baseweb="radio"] { position: relative; margin: .28rem 0; padding: .7rem .78rem; border: 1px solid transparent; border-radius: 12px; transition: background .22s ease, transform .22s ease, box-shadow .22s ease, border-color .22s ease; cursor: pointer; }
     [data-testid="stSidebar"] [data-baseweb="radio"]:hover { background: rgba(127,226,213,.12); transform: translateX(5px); box-shadow: 0 5px 14px rgba(0,0,0,.12); }
     [data-testid="stSidebar"] [data-baseweb="radio"]:active { transform: translateX(3px) scale(.985); }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) { background: linear-gradient(90deg, rgba(15,139,141,.34), rgba(15,139,141,.08)); box-shadow: inset 3px 0 0 #7fe2d5, 0 6px 16px rgba(0,0,0,.14); }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) { background: linear-gradient(100deg, rgba(15,139,141,.42), rgba(15,139,141,.12)); border-color: rgba(127,226,213,.24); box-shadow: inset 4px 0 0 #7fe2d5, 0 7px 18px rgba(0,0,0,.16); }
     [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) label { color: #ffffff; font-weight: 750; }
     [data-testid="stSidebar"] [data-baseweb="radio"] label { transition: color .22s ease, letter-spacing .22s ease; }
     [data-testid="stSidebar"] [data-baseweb="radio"]:hover label { color: #7fe2d5; letter-spacing: .01em; }
-    [data-testid="stSidebar"] [data-baseweb="radio"] div:first-child { border-color: #78d6cb; transition: background .22s ease, border-color .22s ease, transform .22s ease; }
-    [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) div:first-child { background: #7fe2d5; border-color: #7fe2d5; transform: scale(1.12); }
+    [data-testid="stSidebar"] [data-baseweb="radio"] div:first-child { display: none; }
+    [data-testid="stSidebar"] [data-baseweb="radio"] label { display: flex; align-items: center; gap: .68rem; width: 100%; }
+    [data-testid="stSidebar"] [data-baseweb="radio"] label::before { display: inline-flex; align-items: center; justify-content: center; width: 1.55rem; height: 1.55rem; border-radius: 8px; background: rgba(255,255,255,.08); color: #a9bdd0; font-size: .9rem; transition: background .22s ease, color .22s ease, transform .22s ease; }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(1) label::before { content: '⌂'; }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(2) label::before { content: '▥'; }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(3) label::before { content: '!'; }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(4) label::before { content: '↗'; }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(5) label::before { content: '✦'; }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:nth-of-type(6) label::before { content: '✓'; }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:hover label::before { background: rgba(127,226,213,.17); color: #7fe2d5; transform: scale(1.08); }
+    [data-testid="stSidebar"] [data-baseweb="radio"]:has(input:checked) label::before { background: #7fe2d5; color: #10213b; transform: scale(1.06); }
+    .sidebar-brand { display:flex; align-items:center; gap:.72rem; padding:.45rem .75rem .9rem; border-bottom:1px solid rgba(169,189,208,.18); }
+    .sidebar-brand-mark { display:flex; align-items:center; justify-content:center; width:2.2rem; height:2.2rem; border-radius:11px; background:linear-gradient(135deg,#7fe2d5,#0f8b8d); color:#10213b; font-weight:900; box-shadow:0 6px 14px rgba(15,139,141,.3); }
+    .sidebar-brand-title { color:#ffffff; font-size:1rem; font-weight:800; letter-spacing:-.02em; }
+    .sidebar-brand-subtitle { color:#91a9c2; font-size:.68rem; margin-top:.12rem; }
+    .sidebar-status { margin: 2rem .75rem 0; padding: .8rem .85rem; border:1px solid rgba(127,226,213,.2); border-radius:11px; background:rgba(255,255,255,.055); color:#a9bdd0; font-size:.72rem; }
+    .sidebar-status span { color:#7fe2d5; font-weight:750; }
     .block-container { max-width: 1450px; padding-top: 2rem; padding-bottom: 3rem; }
     h1 { color: var(--navy); font-weight: 760; letter-spacing: -.035em; margin-bottom: .15rem; }
     h2, h3 { color: var(--navy); font-weight: 700; }
@@ -46,6 +59,8 @@ st.markdown('''
     .hero-note strong { color: #7fe2d5; }
 </style>
 ''', unsafe_allow_html=True)
+with st.sidebar:
+    st.markdown('<div class="sidebar-brand"><div class="sidebar-brand-mark">SE</div><div><div class="sidebar-brand-title">SmartEnergy</div><div class="sidebar-brand-subtitle">Analytics workspace</div></div></div>', unsafe_allow_html=True)
 st.title('⚡ SmartEnergy Analytics')
 st.markdown('<div class="hero-note"><strong>Energy intelligence workspace</strong><br>PySpark-first electricity analytics with transparent local fallback and AWS-ready storage.</div>', unsafe_allow_html=True)
 CHART_TEMPLATE = 'plotly_white'
@@ -66,7 +81,8 @@ if not (OUTPUT_DIR/'quality.json').exists(): run_pipeline(DATA_PATH, OUTPUT_DIR)
 clean = pd.read_csv(OUTPUT_DIR/'cleaned.csv', parse_dates=['timestamp'])
 quality = json.loads((OUTPUT_DIR/'quality.json').read_text())
 daily = pd.read_csv(OUTPUT_DIR/'daily.csv'); entities = pd.read_csv(OUTPUT_DIR/'entities.csv'); hourly = pd.read_csv(OUTPUT_DIR/'hourly.csv')
-page = st.sidebar.radio('Navigate', ['Energy overview','Consumption analytics','Anomaly monitor','Demand forecast','Energy insights','Data quality'])
+page = st.sidebar.radio('Workspace', ['Energy overview','Consumption analytics','Anomaly monitor','Demand forecast','Energy insights','Data quality'])
+st.sidebar.markdown('<div class="sidebar-status"><span>●</span>&nbsp; Demo analytics ready<br><small>Six modules · Live local session</small></div>', unsafe_allow_html=True)
 if page == 'Energy overview':
     c1,c2,c3,c4 = st.columns(4); c1.metric('Total consumption', f"{clean.consumption_kwh.sum():,.1f} kWh"); c2.metric('Average daily', f"{daily['sum'].mean():,.1f} kWh"); c3.metric('Entities', clean.entity_id.nunique()); c4.metric('Records', f"{len(clean):,}")
     fig = px.line(daily, x='day', y='sum', title='Daily total consumption', labels={'day':'Date','sum':'Consumption (kWh)'}, template=CHART_TEMPLATE, color_discrete_sequence=CHART_COLORS); fig.update_layout(margin=dict(l=10,r=10,t=55,b=10)); st.plotly_chart(fig, use_container_width=True)
